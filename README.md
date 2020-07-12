@@ -1,2 +1,2 @@
 # Electron-timer
-[a link](https://www.electronjs.org/)
+[Electron Documentation](https://www.electronjs.org/)

@@ -52,7 +52,10 @@ module.exports = {
             {
                 label: 'Window',
                 submenu: [
-                    { role: 'minimize' },
+                    { 
+                        role: 'minimize',
+                        accelerator: 'Alt+M'
+                    },
                     {   
                         label: 'Close',
                         role: 'close' 
@@ -64,6 +67,7 @@ module.exports = {
                 submenu:[
                     {
                         label:'Learn more',
+                        accelerator: 'CmdOrCtrl+I',
                         click: ()=>{
                             ipcMain.emit('abrir-janela-sobre')
                         }
