@@ -30,8 +30,7 @@ linkSobre.addEventListener('click' , function(){
 
 
 botaoPlay.addEventListener('click',function(){
-    // inverte posições do array
-
+    console.log("ola")
     if (play){
         botaoPlay.src = images[0];
         timer.stop(course.textContent);
@@ -63,6 +62,15 @@ ipcRenderer.on('changed-course',(event,courseName)=>{
     course.textContent = courseName;
 })
 
+
+// shortcut stop and start timer
+ipcRenderer.on('shortcut-start-stop',()=>{
+    console.log("shortcuts")
+    let newEvent = new MouseEvent('click');
+    botaoPlay.dispatchEvent(newEvent);    
+
+
+});
 
 
 addButton.addEventListener('click',function(){

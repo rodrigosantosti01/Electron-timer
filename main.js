@@ -1,4 +1,4 @@
-const { app, BrowserWindow,ipcMain,Tray,Menu}  = require('electron');
+const { app, BrowserWindow,ipcMain,Tray,Menu,globalShortcut}  = require('electron');
 const templateGenerator = require('./template')
 const data = require('./data');
 
@@ -10,8 +10,15 @@ app.on('ready', () => {
  
     mainWindow = new BrowserWindow({
         width: 600,
-        height: 400
+        height: 400,
+        webPreferences: {
+            nodeIntegration: true
+        }
     });
+
+    //The lines below solved the issue
+   
+
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
     let icon = `${__dirname}/app/img/icon-tray.png`;
     // courses menu list
@@ -27,6 +34,10 @@ app.on('ready', () => {
     let mainMenu = Menu.buildFromTemplate(templateMenu);
     Menu.setApplicationMenu(mainMenu);
 
+    // shortcut stop and start timer
+    globalShortcut.register('CmdOrCtrl+Shift+S', () => {
+        mainWindow.send('shortcut-start-stop');
+    });
 
 });
 
