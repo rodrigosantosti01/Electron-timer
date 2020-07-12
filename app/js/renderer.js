@@ -43,7 +43,7 @@ botaoPlay.addEventListener('click',function(){
         botaoPlay.src = images[1];
         timer.play(studyTime)
         play=true;
-        new Notification("Electron timer!", {
+        new Notification("Electron timer", {
             body: `The course ${course.textContent} has been started!!`,
             icon: 'img/play-button.png'
         });
@@ -61,10 +61,10 @@ ipcRenderer.on('changed-course',(event,courseName)=>{
     botaoPlay.src = images[0];
     data.loadDataFromJson(courseName)
         .then((data)=>{
-            studyTime.textContent = data.studyTime
+            studyTime.textContent = data.studyTime;
         })
         .catch(()=>{
-
+            studyTime.textContent = '00:00:00';
         })
     course.textContent = courseName;
 })
@@ -79,6 +79,11 @@ ipcRenderer.on('shortcut-start-stop',()=>{
 
 
 addButton.addEventListener('click',function(){
+
+    if(field.value==''){
+        return; 
+    }
+
     let newCourse = field.value;
     course.textContent = newCourse;
     studyTime.textContent = '00:00:00';
