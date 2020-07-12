@@ -16,9 +16,7 @@ app.on('ready', () => {
         }
     });
 
-    //The lines below solved the issue
    
-
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
     let icon = `${__dirname}/app/img/icon-tray.png`;
     // courses menu list

@@ -30,16 +30,23 @@ linkSobre.addEventListener('click' , function(){
 
 
 botaoPlay.addEventListener('click',function(){
-    console.log("ola")
     if (play){
         botaoPlay.src = images[0];
         timer.stop(course.textContent);
         play=false;
+        new Notification("Electron timer", {
+            body: `The course ${course.textContent} has been stoped!!`,
+            icon: 'img/stop-button.png'
+        });
    }
     else{
         botaoPlay.src = images[1];
         timer.play(studyTime)
         play=true;
+        new Notification("Electron timer!", {
+            body: `The course ${course.textContent} has been started!!`,
+            icon: 'img/play-button.png'
+        });
     }
 
 });
@@ -65,10 +72,8 @@ ipcRenderer.on('changed-course',(event,courseName)=>{
 
 // shortcut stop and start timer
 ipcRenderer.on('shortcut-start-stop',()=>{
-    console.log("shortcuts")
     let newEvent = new MouseEvent('click');
     botaoPlay.dispatchEvent(newEvent);    
-
 
 });
 
