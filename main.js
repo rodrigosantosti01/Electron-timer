@@ -12,22 +12,22 @@ app.on('ready', () => {
         width: 600,
         height: 400
     });
-
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
     let icon = `${__dirname}/app/img/icon-tray.png`;
     // courses menu list
     tray = new Tray(icon)
 
     // Generate template with templateGenerator
-
     let template = templateGenerator.generateTrayTemplate(mainWindow);
-
-
     const trayMenu = Menu.buildFromTemplate(template)
     tray.setContextMenu(trayMenu)
 
+    // Build main menu 
+    let templateMenu = templateGenerator.generateMainMenuTemplate(app);
+    let mainMenu = Menu.buildFromTemplate(templateMenu);
+    Menu.setApplicationMenu(mainMenu);
 
-    
+
 });
 
 
